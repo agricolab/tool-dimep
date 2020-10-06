@@ -31,8 +31,8 @@ def wassermann_t(
     # select baseline and response
     baseline = np.abs(trace)[baseline_start:tms_sampleidx]
     response = np.abs(trace)[tms_sampleidx + minlatency : tms_sampleidx + maxlatency]
-    bl_bins = down_bin(baseline, fs / 1000)
-    response_bins = down_bin(response, fs / 1000)
+    bl_bins = down_bin(baseline, int(fs / 1000))
+    response_bins = down_bin(response, int(fs / 1000))
     out = ttest_1samp(bl_bins, response_bins)
     # because one-sided
     significant = (out.pvalue < (threshold * 2)) & (out.statistic < 0)
