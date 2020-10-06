@@ -17,7 +17,7 @@ API
    :toctree: _autosummary
    :template: module.rst
 
-   dimep.detect
+   dimep.api
 
 
 Indices and tables
