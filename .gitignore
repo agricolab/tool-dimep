@@ -1,0 +1,14 @@
+*egg-info
+*/__pycache__/*
+*/*/__pycache__/*
+.pytest_*cache*
+.vscode
+*mypy_cache*
+build/*
+dist/*
+.test
+.coverage
+htmlcov/*
+docs/build/*
+docs/source/_autosummary
+scrapbook

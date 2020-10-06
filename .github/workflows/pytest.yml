@@ -1,0 +1,36 @@
+name: pytest
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip        
+          pip install -r requirements.txt
+          pip install .
+      - name: Test with mypy
+        run: |
+          pip install mypy
+          mypy
+      - name: Test with pytest
+        run: |
+          pip install coverage
+          pip install pytest-cov
+          pip install pytest
+          pytest
+      - name: Submit coverage report
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALL_SECRET }}
+        run: |
+          pip install coveralls
+          coverage html
+          coveralls
