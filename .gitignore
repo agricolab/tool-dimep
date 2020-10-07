@@ -12,3 +12,5 @@ htmlcov/*
 docs/build/*
 docs/source/_autosummary
 scrapbook
+*.pdf
+*.sav

@@ -10,6 +10,7 @@ docs:
 	rm -rf docs/build/html
 	rm -rf docs/build/doctree
 	rm -rf docs/source/_autosummary
+	if [ ! -d docs/source/_static ] ; then mkdir docs/source/_static; fi
 	make -C docs html
 
 clean:
