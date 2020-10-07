@@ -4,5 +4,7 @@ twine check dist/*
 virtualenv .test
 source .test/bin/activate
 pip install dist/*.whl
+echo '================================ Running mypy =================================='
+mypy
 pytest
 deactivate
