@@ -8,3 +8,4 @@
 
 """
 
+from dimep.algo import *
