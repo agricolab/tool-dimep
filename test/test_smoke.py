@@ -4,6 +4,6 @@ import pytest
 
 
 @pytest.mark.parametrize("algo", (__all__))
-def test_bawa(traces, algo):
+def test_(traces, algo):
     for trace in traces:
         globals()[algo](trace, tms_sampleidx=1000)

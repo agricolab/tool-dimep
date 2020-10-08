@@ -10,39 +10,48 @@ from dimep.tools import bw_boundaries
 import numpy as np
 
 
-def chen(trace: ndarray, tms_sampleidx: int, fs: float = 1000) -> float:
-    """Estimate the amplitude of an iMEP
-
-    based  on 
-    
-    Chen, R.; Yung, D. & Li, J.-Y.Organization of Ipsilateral Excitatory and Inhibitory Pathways in the Human Motor Cortex Journal of Neurophysiology, American Physiological Society, 2003, 89, 1256-1264
-
-
+def chen_onoff(
+    trace: ndarray,
+    tms_sampleidx: int,
+    fs: float = 1000,
+    mep_window_in_ms: Tuple[float, float] = (0, np.inf),
+) -> Tuple[int, int]:
+    """Estimate iMEP onset and offset based on Chen 2003
     args
     ----
     trace:ndarray
-        the recorded EMG signal
+        the onedimensional EMG signal
     tms_sampleidx: int
         the sample at which the TMS pulse was applied
     fs:float
         the sampling rate of the signal
 
-    """
+    returns
+    -------
+    onoff:Tuple[int, int]
+        the iMEP onset and offset
 
+    """
     # For each subject, the surface EMG from the right FDI muscle for each
     # stimulus intensity and coil orientation were rectified and averaged.
-    response = np.abs(trace)
+    rect = np.abs(trace)
+
+    # select baseline and response
 
     # The mean and SD of the baseline EMG level for 100 ms before TMS  was
     # determined.
     # NOTE: Formula for SD calculation not given in paper
     baseline_start = tms_sampleidx - ceil(100 * fs / 1000)
-    baseline = response[baseline_start:tms_sampleidx]
+    baseline = rect[baseline_start:tms_sampleidx]
     bl_m = baseline.mean()
     bl_s = baseline.std(ddof=1)
     threshold = bl_m + 1 * bl_s
 
     # find the peak, which needs to exceed the prestimulus mean by >1 SD
+    minlatency = ceil(mep_window_in_ms[0] * fs / 1000)
+    maxlatency = mep_window_in_ms[1] * fs / 1000
+    maxlatency = ceil(min(maxlatency, len(trace) - tms_sampleidx))
+    response = rect[tms_sampleidx + minlatency : tms_sampleidx + maxlatency]
     L = bw_boundaries(response > threshold)
     n = max(L)
     peak_onset = None
@@ -50,12 +59,12 @@ def chen(trace: ndarray, tms_sampleidx: int, fs: float = 1000) -> float:
         duration_in_ms = (sum(L == nix) / fs) * 1000
         # for >=5ms
         if duration_in_ms >= 5:
-            peak_onset = np.where(L == nix)
+            peak_onset = np.where(L == nix)[0][0]
             break
     # iMEP onset was defined as last crossing of the mean baseline EMG level
     # before the iMEP peak
-    if peak_onset is not None:
-        return 0.0
+    if peak_onset is None:
+        return (0, 0)
     else:
         onoff = response > bl_m
 
@@ -66,7 +75,7 @@ def chen(trace: ndarray, tms_sampleidx: int, fs: float = 1000) -> float:
             # it marks the onset
             if v == 0:
                 break
-        onset = peak_onset - ix
+        onset = tms_sampleidx + minlatency + peak_onset - ix
 
         """iMEP  offset  as  the first  crossing  of  the mean  baseline  EMG  level  after  the  iMEP  peak"""
         # we go forwards in time, starting at the peak_onset
@@ -75,9 +84,45 @@ def chen(trace: ndarray, tms_sampleidx: int, fs: float = 1000) -> float:
             # it marks the offset
             if v == 0:
                 break
-        offset = peak_onset + ix
-        print(onset, offset)
+        offset = tms_sampleidx + minlatency + peak_onset + ix
+        return (onset, offset)
 
-        #  iMEP  area  was calculated  between  the  iMEP  onset  and  offset.
-        iMEPArea = np.sum(response[onset:offset])
-        return iMEPArea
+
+def chen(trace: ndarray, tms_sampleidx: int, fs: float = 1000) -> float:
+    """Estimate iMEP amplitude based on Chen 2003
+
+    The iMEP area is calculated from the rectified EMG, if at least 5ms are 1SD above the mean of the baseline. A fork is :func:`~.chen`.
+
+
+    args
+    ----
+    trace:ndarray
+        the EMG signal
+    tms_sampleidx: int
+        the sample at which the TMS pulse was applied
+    fs:float
+        the sampling rate of the signal
+
+    returns
+    -------
+    amplitude:float
+        the iMEP Area based on the rectified EMG     
+
+
+    .. admonition:: Reference
+        
+        Chen, R.; Yung, D. & Li, J.-Y.Organization of Ipsilateral Excitatory and Inhibitory Pathways in the Human Motor Cortex Journal of Neurophysiology, American Physiological Society, 2003, 89, 1256-1264
+
+    .. seealso::
+
+        :py:func:`~.bradnam` is based on :func:`~.chen` but normalizes the iMEP amplitude by baseline EMG activity
+
+    """
+    # We factored the determination of onset and offset out of this function, # because it will also be used for :func:`~.bradnam`
+    onset, offset = chen_onoff(trace=trace, tms_sampleidx=tms_sampleidx, fs=fs)
+
+    # For each subject, the surface EMG from the right FDI muscle for each
+    # stimulus intensity and coil orientation were rectified and averaged.
+    response = np.abs(trace)
+    iMEPArea = np.sum(response[onset:offset])
+    return iMEPArea

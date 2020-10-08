@@ -24,9 +24,11 @@ def wassermann_sd(
 ):
     """Estimate the amplitude of an iMEP 
     
-    based on
+    
 
-    Ziemann, Ulf, Kenji Ishii, Alessandra Borgheresi, Zaneb Yaseen, Fortunato Battaglia, Mark Hallett, Massimo Cincotta, and Eric M. Wassermann. “Dissociation of the Pathways Mediating Ipsilateral and Contralateral Motor-Evoked Potentials in Human Hand and Arm Muscles.” The Journal of Physiology 518, no. 3 (August 1999): 895–906. https://doi.org/10.1111/j.1469-7793.1999.0895p.x.
+    .. admonition:: Reference
+
+        Ziemann, Ulf, Kenji Ishii, Alessandra Borgheresi, Zaneb Yaseen, Fortunato Battaglia, Mark Hallett, Massimo Cincotta, and Eric M. Wassermann. “Dissociation of the Pathways Mediating Ipsilateral and Contralateral Motor-Evoked Potentials in Human Hand and Arm Muscles.” The Journal of Physiology 518, no. 3 (August 1999): 895–906. https://doi.org/10.1111/j.1469-7793.1999.0895p.x.
 
 
     """
@@ -35,9 +37,7 @@ def wassermann_sd(
     baseline_start = tms_sampleidx - ceil(50 * fs / 1000)
     # select baseline and response
     baseline = np.abs(trace)[baseline_start:tms_sampleidx]
-    response = np.abs(trace)[
-        tms_sampleidx + minlatency : tms_sampleidx + maxlatency
-    ]
+    response = np.abs(trace)[tms_sampleidx + minlatency : tms_sampleidx + maxlatency]
     # calculate threshold
     bl_m = baseline.mean()
     bl_s = baseline.std(ddof=1)  # to be consistent with Matlab defaults

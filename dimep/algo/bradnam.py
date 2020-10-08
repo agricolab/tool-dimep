@@ -7,23 +7,66 @@ where iMEPAREA is the area calculated between iMEP onset and offset latencies, E
 """
 from numpy import ndarray
 from typing import Tuple
+import numpy as np
+from math import ceil
 
 
 def bradnam(
-    trace: ndarray,
-    tms_sampleidx: int,
-    mep_window_in_ms: Tuple[float, float] = (15, 75),
-    fs: float = 1000,
-    minimum_duration_in_ms: float = 2,
-    threshold: float = 0.01,
+    trace: ndarray, tms_sampleidx: int, fs: float = 1000,
 ):
-    """Estimate the amplitude of an iMEP
+    """Estimate iMEP amplitude based on Bradnam 2010 (fork of Chen 2003)
 
-    based  on 
-    
-    Bradnam, L. V.; Stinear, C. M.; Lewis, G. N. & Byblow, W. D.
-    Task-Dependent Modulation of Inputs to Proximal Upper Limb Following Transcranial Direct Current Stimulation of Primary Motor Cortex 
-    Journal of Neurophysiology, American Physiological Society, 2010, 103, 2382-2389
+    Similar to :func:`~.chen`, the iMEP area is calculated from the rectified EMG, if at least 5ms are 1SD above the mean of the baseline. In addition, the value for an area of identical duration during the baseline period immediatly before the TMS is subtracted and multiplied by 1000:
+
+    iMEP = (iMEPAREA - EMGAREA) x 1,000
+
+    args
+    ----
+    trace:ndarray
+        the EMG signal
+    tms_sampleidx: int
+        the sample at which the TMS pulse was applied
+    fs:float
+        the sampling rate of the signal
+
+    returns
+    -------
+    amplitude:float
+        the normalized iMEP Area based on the rectified EMG     
+
+
+    .. admonition:: Reference
+        
+        Bradnam, L. V.; Stinear, C. M.; Lewis, G. N. & Byblow, W. D.Task-Dependent Modulation of Inputs to Proximal Upper Limb Following Transcranial Direct Current Stimulation of Primary Motor Cortex Journal of Neurophysiology, American Physiological Society, 2010, 103, 2382-2389
+
+    .. seealso::
+
+        :py:func:`~.bradnam` is based on  but normalizes the iMEP amplitude by baseline EMG activity
 
     """
-    rect = np.abs(trace)
+    from dimep.algo.chen import chen_onoff
+
+    # inspected for iMEPs between 10 and 30 ms poststimulus,
+    mep_window_in_ms: Tuple[float, float] = (10, 30)
+    # For each subject, the surface EMG from the right FDI muscle for each
+    # stimulus intensity and coil orientation were rectified and averaged.
+
+    onset, offset = chen_onoff(trace=trace, tms_sampleidx=tms_sampleidx, fs=fs)
+    # For each subject, the surface EMG from the right FDI muscle for each
+    # stimulus intensity and coil orientation were rectified and averaged.
+    response = np.abs(trace)
+    iMEPArea = np.sum(response[onset:offset])
+    # EMGAREA isthe background EMG area calculated over the same duration as
+    # the iMEPAREA
+    # EMGAREA was calculated for each trial, in a window of prestimulus EMG
+    # equivalent in duration to that of the iMEPAREAanalysis window,
+    # ending 0.1 ms before the stimulus.
+    before = tms_sampleidx - ceil(0.1 * fs / 1000)  # transform in samples
+    duration = offset - onset
+    EMGArea = np.sum(response[before - duration : before])
+    # return (iMEPArea - EMGArea) * 1000
+    """converted to mV·s."""
+    # this would be the case if me divivde by fs, not necessaruily 1000:
+    # therefore
+    return ((iMEPArea - EMGArea) / fs) * 1000
+

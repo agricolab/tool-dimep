@@ -2,7 +2,7 @@
 
 
 .. automodule:: dimep.algo
-   :members: bawa, wassermann_sd, wassermann_t
+   :members: chen, bawa, bradnam, wassermann_sd, wassermann_t
 
 
 
