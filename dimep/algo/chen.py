@@ -69,7 +69,8 @@ def chen_onoff(
         onoff = response > bl_m
 
         """iMEP onset  was  defined  as  last  crossing  of  the  mean  baseline  EMG  level before  the  iMEP  peak """
-        # we go backwards in time, starting at the peak_onset
+        # we go backwards in time, starting at the peak_onset\
+        ix = 0
         for ix, v in enumerate(onoff[:peak_onset][::-1]):
             # if the value falls below the treshold of bl_m,
             # it marks the onset
@@ -79,6 +80,7 @@ def chen_onoff(
 
         """iMEP  offset  as  the first  crossing  of  the mean  baseline  EMG  level  after  the  iMEP  peak"""
         # we go forwards in time, starting at the peak_onset
+        ix = 0
         for ix, v in enumerate(onoff[peak_onset:]):
             # if the value falls below the treshold of bl_m,
             # it marks the offset
