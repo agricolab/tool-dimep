@@ -41,8 +41,8 @@ def bradnam(
 
     .. seealso::
 
-        :py:func:`~.bradnam` is based on  but normalizes the iMEP amplitude by baseline EMG activity
-        :func:`~.lewis` detects the occurence of an iMEP in the window 10 to 30ms after TMS
+        :func:`~.chen` does not normalize the iMEP amplitude by baseline EMG activity and has an undefined search window
+        :func:`~.lewis` measures the PtP amplitude of an iMEP in the window 10 to 30 ms after TMS if it passes specific criterions.
 
     """
     from dimep.algo.chen import chen_onoff

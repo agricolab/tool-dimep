@@ -1,11 +1,5 @@
-"""API for DiMEP
-
-
-.. automodule:: dimep.algo
-   :members: chen, bawa, bradnam, wassermann_sd, wassermann_t
-
+"""Main Access Point for DiMEP Algorithms
 
 
 """
-
 from dimep.algo import *

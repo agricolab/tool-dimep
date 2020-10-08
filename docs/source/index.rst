@@ -6,18 +6,19 @@
 Welcome to DiMEP's documentation!
 =================================
 
+Access the algorithms with
+
+.. code-block::
+
+   from dimep.api import <algorithm>
+
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-API
----
+   algorithms
 
-.. autosummary::
-   :toctree: _autosummary
-   :template: module.rst
-
-   dimep.api
 
 
 Indices and tables
