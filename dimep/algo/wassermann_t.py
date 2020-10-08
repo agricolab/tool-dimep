@@ -26,7 +26,6 @@ def wassermann_t(
 
     Wassermann, Eric M., Alvaro Pascual-Leone, and Mark Hallett. “Cortical Motor Representation of the Ipsilateral Hand and Arm.” Experimental Brain Research 100, no. 1 (July 1994). https://doi.org/10.1007/BF00227284.
 
-  
     """
     # as the latency of the contralateral MEP might sometimes not be known in
     # general (e.g. after stroke), we let it set as argument and default
