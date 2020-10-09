@@ -15,7 +15,7 @@ from math import ceil
 from dimep.tools import bw_boundaries
 
 
-def wassermann_sd(
+def ziemann(
     trace: ndarray,
     tms_sampleidx: int,
     mep_window_in_ms: Tuple[float, float] = (15, 50),
@@ -37,7 +37,9 @@ def wassermann_sd(
     baseline_start = tms_sampleidx - ceil(50 * fs / 1000)
     # select baseline and response
     baseline = np.abs(trace)[baseline_start:tms_sampleidx]
-    response = np.abs(trace)[tms_sampleidx + minlatency : tms_sampleidx + maxlatency]
+    response = np.abs(trace)[
+        tms_sampleidx + minlatency : tms_sampleidx + maxlatency
+    ]
     # calculate threshold
     bl_m = baseline.mean()
     bl_s = baseline.std(ddof=1)  # to be consistent with Matlab defaults

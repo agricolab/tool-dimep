@@ -12,7 +12,7 @@ from scipy.stats import ttest_1samp
 from dimep.tools import down_bin, bw_boundaries
 
 
-def wassermann_t(
+def wassermann(
     trace: ndarray,
     tms_sampleidx: int,
     mep_window_in_ms: Tuple[float, float] = (15, 75),
@@ -45,7 +45,7 @@ def wassermann_t(
     response_bins = down_bin(response, int(fs / 1000))
     out = ttest_1samp(bl_bins, response_bins)
     # because one-sided
-    significant = (out.pvalue < (threshold * 2)) & (out.statistic < 0)
+    significant = (out.pvalue < (threshold * 2)) & (out.statistic < 0)  # type: ignore
 
     L = bw_boundaries(significant)
     n = max(L)
