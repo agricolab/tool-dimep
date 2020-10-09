@@ -12,16 +12,15 @@ def odergren(
     trace: ndarray,
     tms_sampleidx: int,
     fs: float = 1000,
-    threshold: float = 0.01,
     mep_window_in_ms: Tuple[float, float] = (0, inf),
 ):
     """Estimate the amplitude of an iMEP based on Odergren 1996
 
-    Returns the PtP-Amplitude of the unrectified EMG if above 0.1mV (100µV) else 0
+    Returns the PtP-Amplitude of the unrectified EMG if above 0.1mV (100µV) 
 
     .. warning:
 
-        As thresholding is based on absolute values with units, make sure that the units of the trace are in microVolts (µV).
+        As thresholding is also based on absolute values with units, make sure that the units of the trace are in microVolts (µV).
 
     args
     ----
@@ -31,8 +30,6 @@ def odergren(
         the sample at which the TMS pulse was applied
     fs:float
         the sampling rate of the signal
-    threshold:float
-        the threshold for the iMEP to pass. Defaults to 100 for 100 µV (0.1mV)
     mep_window_in_ms: Tuple[float, float]
         the search window after TMS to look for an iMEP. The manuscript did not specify a restricted search window, and by default we search the whole trace, starting from the TMS to the end of the supplied samples.
 
@@ -57,4 +54,4 @@ def odergren(
         min((tms_sampleidx + (mep_window_in_ms[1] * fs / 1000)), len(trace))
     )
     amp = np.ptp(trace[a:b])
-    return amp if amp > threshold else 0.0
+    return amp if amp > 100 else 0.0

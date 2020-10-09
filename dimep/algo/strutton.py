@@ -13,11 +13,11 @@ def strutton(
     mep_window_in_ms: Tuple[float, float] = (15, 50),
     fs: float = 1000,
 ):
-    """Estimate the amplitude of an iMEP
+    """Estimate the amplitude of an iMEP based on Strutton 2004
 
-    based on
+    .. admonition:: Reference
 
-    Strutton, P.; Beith, I.; Theodorou, S.; Catley, M.; McGregor, A. & Davey, N. Corticospinal activation of internal oblique muscles has a strong ipsilateral component and can be lateralised in man Experimental Brain Research, Springer Science and Business Media LLC, 2004, 158
+        Strutton, P.; Beith, I.; Theodorou, S.; Catley, M.; McGregor, A. & Davey, N. Corticospinal activation of internal oblique muscles has a strong ipsilateral component and can be lateralised in man Experimental Brain Research, Springer Science and Business Media LLC, 2004, 158
 
     """
     a = tms_sampleidx + ceil(mep_window_in_ms[0] * fs / 1000)

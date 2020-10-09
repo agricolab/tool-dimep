@@ -46,13 +46,18 @@ Summers 2020
 .. autofunction:: summers
 
 
-Ziemann 1999
-++++++++++++
-
-.. autofunction:: ziemann
-
-
 Wassermann 1994
 +++++++++++++++
 
 .. autofunction:: wassermann
+
+Zewdie 2017
++++++++++++
+
+.. autofunction:: zewdie
+
+
+Ziemann 1999
+++++++++++++
+
+.. autofunction:: ziemann

@@ -46,7 +46,7 @@ def lewis(trace: ndarray, tms_sampleidx: int, fs: float = 1000,) -> float:
 
     .. seealso::
 
-        :func:`~.bradnam`, which inherited the window of 10 to 30ms.
+        :func:`~.bradnam`, which inherited the window of 10 to 30ms, or :func:`~.zewdie`, which also calculated PtP, but uses a window from 15 to 80ms and a lower threshold of 50µV.
 
     """
     # NOTE: Formula for SD calculation not given in paper
@@ -66,7 +66,8 @@ def lewis(trace: ndarray, tms_sampleidx: int, fs: float = 1000,) -> float:
     #  exceed 3 standard deviations (SD) of background EMG.
     # a discernable ipsilateral MEP (iMEP; 10–30 ms onset, >100µV)
     if np.max(response) > threshold:
-        return np.ptp(response)
+        amp = np.ptp(response)
     else:
-        return 0.0
+        amp = 0.0
+    return amp if amp > 100.0 else 0.0
 

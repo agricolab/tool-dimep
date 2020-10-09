@@ -7,6 +7,7 @@ from .odergren import odergren
 from .rotenberg import rotenberg
 from .summers import summers
 from .wassermann import wassermann
+from .zewdie import zewdie
 from .ziemann import ziemann
 
 
@@ -20,6 +21,7 @@ __all__ = [
     "rotenberg",
     "summers",
     "wassermann",
+    "zewdie",
     "ziemann",
 ]
 
