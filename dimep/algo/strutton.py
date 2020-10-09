@@ -1,5 +1,5 @@
 """
-Bilateral EMG responses wererecorded simultaneously from all three muscles and were rectified and then averaged for each trial. The times ofonset and finish of the MEP were determined visually bytwo independent assessors and cursors positioned at thesepoints to allow measurement of latency and area.
+Bilateral EMG responses were recorded simultaneously from all three muscles and were rectified and then averaged for each trial. The times of onset and finish of the MEP were determined visually by two independent assessors and cursors positioned at these points to allow measurement of latency and area.
 """
 import numpy as np
 from numpy import ndarray

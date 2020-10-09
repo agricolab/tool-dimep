@@ -53,7 +53,10 @@ def bradnam(
     # stimulus intensity and coil orientation were rectified and averaged.
 
     onset, offset = chen_onoff(
-        trace=trace, tms_sampleidx=tms_sampleidx, mep_window_in_ms=(10, 30), fs=fs,
+        trace=trace,
+        tms_sampleidx=tms_sampleidx,
+        mep_window_in_ms=(10, 30),
+        fs=fs,
     )
     # For each subject, the surface EMG from the right FDI muscle for each
     # stimulus intensity and coil orientation were rectified and averaged.

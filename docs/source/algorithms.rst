@@ -40,6 +40,12 @@ Rotenberg 2010
 .. autofunction:: rotenberg
 
 
+Summers 2020
++++++++++++++
+
+.. autofunction:: summers
+
+
 Ziemann 1999
 ++++++++++++
 

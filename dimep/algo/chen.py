@@ -3,7 +3,7 @@ Because  iMEP  and  iSP  were  generally  of  small amplitude  and  were  variab
 
 #NOTE for ISP and iMEP, different inequalities are given, but the sample-wise description is identical. 
 """
-from numpy import ndarray
+from numpy import ndarray, inf
 from typing import Tuple
 from math import ceil
 from dimep.tools import bw_boundaries
@@ -14,7 +14,7 @@ def chen_onoff(
     trace: ndarray,
     tms_sampleidx: int,
     fs: float = 1000,
-    mep_window_in_ms: Tuple[float, float] = (0, np.inf),
+    mep_window_in_ms: Tuple[float, float] = (0, inf),
     baseline_duration_in_ms: float = 100,
 ) -> Tuple[int, int]:
     """Estimate iMEP onset and offset based on Chen 2003
