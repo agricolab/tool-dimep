@@ -33,6 +33,12 @@ Loyda 2017
 .. autofunction:: loyda
 
 
+Odergren 1996
++++++++++++++
+
+.. autofunction:: odergren
+
+
 Ziemann 1999
 ++++++++++++
 

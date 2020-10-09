@@ -1,10 +1,12 @@
 from .bawa import bawa
-from .ziemann import ziemann
-from .wassermann import wassermann
-from .chen import chen
 from .bradnam import bradnam
+from .chen import chen
 from .lewis import lewis
 from .loyda import loyda
+from .odergren import odergren
+from .wassermann import wassermann
+from .ziemann import ziemann
+
 
 __all__ = [
     "chen",
@@ -12,6 +14,7 @@ __all__ = [
     "bradnam",
     "lewis",
     "loyda",
+    "odergren",
     "wassermann",
     "ziemann",
 ]
