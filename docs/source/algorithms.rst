@@ -1,6 +1,9 @@
 Algorithms
 ----------
 
+Sorted in alphabetical order according to last name of first author.
+
+Suitable algorithms were deteced based on a literature research on pubmed using *ipsilateral motor evoked potentials* as keyword. This search was performed on 5th Octobre 2020. Articles were selected based on title and abstract, and the subselected manuscripts were read for sufficient description of an automated algorithms for estimation of iMEP amplitude (or area, or similar). All algorithms have been implemented to the best of our understanding, based on the description of methods in the respective paper. The quotes on which algorithmic decisions were based can be found in the source code of the respective functions.
 
 .. currentmodule:: dimep.algo
 
@@ -51,7 +54,7 @@ Wassermann 1994
 
 .. autofunction:: wassermann
 
-Zewdie 2017
+Zedie 2017
 +++++++++++
 
 .. autofunction:: zewdie

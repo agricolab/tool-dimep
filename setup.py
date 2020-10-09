@@ -8,10 +8,13 @@ this_directory = Path(__file__).parent
 with (this_directory / "readme.md").open(encoding="utf-8") as f:
     long_description = f.read()
 
+with (this_directory / "dimep" / "version.py").open(encoding="utf-8") as f:
+    version = f.readline().split("=")[1].strip()
 
+print(version)
 setup(
     name="dimep",
-    version="v0.0.1",
+    version="v" + version,
     description="Tools for detection of ipsilateral MEPs",
     long_description=long_description,
     long_description_content_type="text/markdown",
