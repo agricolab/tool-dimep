@@ -8,20 +8,17 @@ Chen 2003
 +++++++++
 
 .. autofunction:: chen
-   
 
 Bawa 2004
 +++++++++
 
 .. autofunction::  bawa
    
-   
 Bradnam 2010
 ++++++++++++
 
 .. autofunction:: bradnam
    
-
 Lewis 2007
 ++++++++++
 
@@ -32,11 +29,15 @@ Loyda 2017
 
 .. autofunction:: loyda
 
-
 Odergren 1996
 +++++++++++++
 
 .. autofunction:: odergren
+
+Rotenberg 2010
+++++++++++++++
+
+.. autofunction:: rotenberg
 
 
 Ziemann 1999

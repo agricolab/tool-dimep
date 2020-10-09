@@ -4,6 +4,7 @@ from .chen import chen
 from .lewis import lewis
 from .loyda import loyda
 from .odergren import odergren
+from .rotenberg import rotenberg
 from .wassermann import wassermann
 from .ziemann import ziemann
 
@@ -15,6 +16,7 @@ __all__ = [
     "lewis",
     "loyda",
     "odergren",
+    "rotenberg",
     "wassermann",
     "ziemann",
 ]
