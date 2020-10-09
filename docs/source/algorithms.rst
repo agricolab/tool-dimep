@@ -27,14 +27,19 @@ Lewis 2007
 
 .. autofunction:: lewis
 
+Loyda 2017
+++++++++++
+
+.. autofunction:: loyda
+
 
 Ziemann 1999
 ++++++++++++
 
-.. autofunction:: wassermann_sd
+.. autofunction:: ziemann
 
 
 Wassermann 1994
 +++++++++++++++
 
-.. autofunction:: wassermann_t
+.. autofunction:: wassermann

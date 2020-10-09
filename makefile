@@ -17,7 +17,7 @@ clean:
 	rm -rf dist */*.egg-info *.egg-info  build
 	rm -rf .test
 
-test: build
+test: build docs
 	test/runtest
 
 upload: build
