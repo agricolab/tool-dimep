@@ -15,8 +15,10 @@ def chen_onoff(
     tms_sampleidx: int,
     fs: float = 1000,
     mep_window_in_ms: Tuple[float, float] = (0, np.inf),
+    baseline_duration_in_ms: float = 100,
 ) -> Tuple[int, int]:
     """Estimate iMEP onset and offset based on Chen 2003
+    
     args
     ----
     trace:ndarray
@@ -25,6 +27,10 @@ def chen_onoff(
         the sample at which the TMS pulse was applied
     fs:float
         the sampling rate of the signal
+    mep_window_in_ms: Tuple[float, float]
+        the search window after TMS to look for an iMEP
+    baseline_duration_in_ms: float
+        the duration of the baseline period immediatly before TMS
 
     returns
     -------
@@ -41,7 +47,7 @@ def chen_onoff(
     # The mean and SD of the baseline EMG level for 100 ms before TMS  was
     # determined.
     # NOTE: Formula for SD calculation not given in paper
-    baseline_start = tms_sampleidx - ceil(100 * fs / 1000)
+    baseline_start = tms_sampleidx - ceil(baseline_duration_in_ms * fs / 1000)
     baseline = rect[baseline_start:tms_sampleidx]
     bl_m = baseline.mean()
     bl_s = baseline.std(ddof=1)
