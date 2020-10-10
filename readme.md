@@ -40,4 +40,4 @@ and subsequently call them, e.g. with
 Documentation
 -------------
 
-Read the documentation on [readthedocs](https://readthedocs.org/projects/tool-dimep/badge/?version=latest).
+Read the documentation on [readthedocs](https://tool-dimep.readthedocs.io/en/latest/?badge=latest).
