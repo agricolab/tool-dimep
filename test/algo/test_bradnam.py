@@ -20,5 +20,7 @@ def test_bradnam():
     assert imep == 0.0
     # now above the threshold and within window
     trace[1010:1020] = 5
-    imep = bradnam(trace, tms_sampleidx=1000, fs=1000)
+    imep = bradnam(trace, tms_sampleidx=1000, fs=1000, unit=1)
+    assert imep == 50.0 / 1000
+    imep = bradnam(trace, tms_sampleidx=1000, fs=1000, unit=1000)
     assert imep == 50.0
