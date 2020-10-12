@@ -1,5 +1,9 @@
 from numpy import ndarray
 import numpy as np
+from pathlib import Path
+from pkg_resources import get_distribution
+
+root = Path(get_distribution("dimep").location)
 
 
 def down_bin(data: ndarray, binsize: int = 5):
@@ -7,7 +11,7 @@ def down_bin(data: ndarray, binsize: int = 5):
     if binsize == 1:
         return data
     kernel: ndarray = np.ones(binsize) / binsize
-    bins: ndarray = np.convolve(data, kernel, "same")
+    bins: ndarray = np.convolve(data, kernel, "valid")
     return bins[::binsize]
 
 

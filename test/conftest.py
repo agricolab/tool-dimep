@@ -11,7 +11,7 @@ def traces():
 
 @fixture(scope="function")
 def normtrace():
-    trace = np.random.random(2000)
+    trace = np.random.random(2000)  # type: ignore
     s = np.std(trace[0:1000], ddof=1)
     m = np.mean(trace[0:1000])
     trace[0:1000] = (trace[0:1000] - m) / s
