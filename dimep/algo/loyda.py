@@ -136,11 +136,7 @@ def loyda(
         try:
             # we go backwards from the tms. Because onset and offset are sampleindices, we flip the along the tms_sampleidx
             shamArea = np.mean(
-                np.abs(
-                    trace[
-                        2 * tms_sampleidx - offset : 2 * tms_sampleidx - onset
-                    ]
-                )
+                np.abs(trace[2 * tms_sampleidx - offset : 2 * tms_sampleidx - onset])
             )
         except IndexError:
             raise IndexError(
@@ -150,6 +146,5 @@ def loyda(
         shamArea = np.mean(np.abs(sham_trace[onset:offset]))
 
     if shamArea == 0.0:
-        print("Shamarea is very close to zero, defaulting to 1")
-        shamArea = 1
+        raise ValueError("Sham Area is too close to zero for numerical stability")
     return (iMEPArea / shamArea) * 100

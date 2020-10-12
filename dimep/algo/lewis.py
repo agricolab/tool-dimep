@@ -66,10 +66,11 @@ def lewis(
     sd_threshold = bl_m + 3 * bl_s
 
     response = trace[tms_sampleidx:]  # recording after TMS
+    mep_window_in_ms: Tuple[float, float]
     if discernible_only:
-        mep_window_in_ms = (10, 30)
+        mep_window_in_ms = (10.0, 30.0)
     else:
-        mep_window_in_ms = (0, inf)
+        mep_window_in_ms = (0.0, inf)
 
     minlatency = ceil(mep_window_in_ms[0] * fs / 1000)
     maxlatency = mep_window_in_ms[1] * fs / 1000
