@@ -44,13 +44,11 @@ def bawa(
 
     .. seealso::
 
-        :func:`~.odergreen` also takes the PtP amplitude, but only if it passes a threshold
+        :func:`~.odergreen` and :func:`~.lewis` also return the PtP amplitude, but only if they are formally discernible
 
     """
     a = tms_sampleidx + ceil(mep_window_in_ms[0] * fs / 1000)
     # b should not be higher then the len of the trace
-    b = ceil(
-        min((tms_sampleidx + (mep_window_in_ms[1] * fs / 1000)), len(trace))
-    )
+    b = ceil(min((tms_sampleidx + (mep_window_in_ms[1] * fs / 1000)), len(trace)))
     return np.ptp(trace[a:b])
 
