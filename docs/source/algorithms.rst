@@ -1,9 +1,14 @@
 Organization
 ------------
+.. 
+  .. graphviz:: classes.dot
+    :name: dependencies
+    :layout: dot
 
-.. graphviz:: classes.dot
-  :name: dependencies
-  :layout: dot
+.. image:: _static/organisation.png
+   :alt: Organisation of iMEP Algorithms   
+   :class: with-shadow
+
 
 
 Algorithms

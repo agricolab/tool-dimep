@@ -23,8 +23,10 @@ def odergren(trace: ndarray, tms_sampleidx: int, fs: float = 1000,) -> float:
     ----
     trace:ndarray
         the onedimensional EMG signal in units of µV
+        
     tms_sampleidx: int
         the sample at which the TMS pulse was applied
+
     fs:float
         the sampling rate of the signal
 

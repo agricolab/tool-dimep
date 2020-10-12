@@ -105,10 +105,13 @@ def loyda(
     ----
     trace:ndarray
         the EMG signal
+        
     tms_sampleidx: int
         the sample at which the TMS pulse was applied
+
     fs:float
         the sampling rate of the signal
+
     sham_trace: Union[ndarray, None]
         if not supplied, the function will take a period from before the TMS period to calculate a shamArea for normalization. Otherwise, support a non-stimulation trial for strict estimation following Loyda 2017
 
@@ -136,7 +139,11 @@ def loyda(
         try:
             # we go backwards from the tms. Because onset and offset are sampleindices, we flip the along the tms_sampleidx
             shamArea = np.mean(
-                np.abs(trace[2 * tms_sampleidx - offset : 2 * tms_sampleidx - onset])
+                np.abs(
+                    trace[
+                        2 * tms_sampleidx - offset : 2 * tms_sampleidx - onset
+                    ]
+                )
             )
         except IndexError:
             raise IndexError(
@@ -146,5 +153,7 @@ def loyda(
         shamArea = np.mean(np.abs(sham_trace[onset:offset]))
 
     if shamArea == 0.0:
-        raise ValueError("Sham Area is too close to zero for numerical stability")
+        raise ValueError(
+            "Sham Area is too close to zero for numerical stability"
+        )
     return (iMEPArea / shamArea) * 100

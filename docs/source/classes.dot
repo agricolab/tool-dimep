@@ -16,6 +16,7 @@
      chen
      rotenberg
      summers     
+     ziemann
     }
     
     subgraph cluster2{
@@ -26,8 +27,5 @@
      zewdie
     }
     
-    subgraph cluster3{
-      label="Mixture"
-      ziemann
-    }
+    
    }

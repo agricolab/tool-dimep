@@ -14,7 +14,7 @@ from math import ceil
 def bradnam(
     trace: ndarray, tms_sampleidx: int, fs: float = 1000, unit: float = 1.0
 ) -> float:
-    """Estimate the normalized area if an iMEP in mV/s based on Bradnam 2010
+    """Estimate the normalized area of an iMEP based on Bradnam 2010
 
     Similar to :func:`~.chen`, the iMEP area is calculated from the rectified EMG, if at least 5ms are 1SD above the mean of the baseline. In addition, the window looking for an iMEP is limited to 10 to 30ms after the TMS (see :func:`~.lewis`) and the value for an area of identical duration during the baseline period immediatly before the TMS is subtracted and multiplied by 1000:
 
@@ -55,7 +55,10 @@ def bradnam(
     # stimulus intensity and coil orientation were rectified and averaged.
 
     onset, offset = chen_onoff(
-        trace=trace, tms_sampleidx=tms_sampleidx, mep_window_in_ms=(10, 30), fs=fs,
+        trace=trace,
+        tms_sampleidx=tms_sampleidx,
+        mep_window_in_ms=(10, 30),
+        fs=fs,
     )
     # For each subject, the surface EMG from the right FDI muscle for each
     # stimulus intensity and coil orientation were rectified and averaged.
@@ -73,5 +76,6 @@ def bradnam(
     """converted to mV·s."""
     # this would be the case if me divivde by fs, not necessarily 1000:
     # therefore
-    return ((iMEPArea - EMGArea) / fs) * 1000 / (1 / unit * 1000)
+    area = ((iMEPArea - EMGArea) / fs) * 1000 / (1 / unit * 1000)
+    return max((area, 0.0))
 
