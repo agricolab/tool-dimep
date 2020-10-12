@@ -127,7 +127,9 @@ def summers(trace: ndarray, tms_sampleidx: int, fs: float = 1000,) -> float:
 
     """
 
-    onset, offset = summers_onoff(trace=trace, tms_sampleidx=tms_sampleidx, fs=fs,)
+    onset, offset = summers_onoff(
+        trace=trace, tms_sampleidx=tms_sampleidx, fs=fs,
+    )
     if onset == offset:
         return 0.0
     response = np.abs(trace)
