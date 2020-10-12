@@ -67,12 +67,14 @@ def summers_onoff(
     baseline = rect[baseline_start:baseline_end]
     bl_m = baseline.mean()
     bl_s = baseline.std(ddof=1)
-    threshold = bl_m + 1 * bl_s
+    threshold = bl_m + 3 * bl_s
 
     # MEP onset and offset were set at each prominent EMG trace deflection
     # rising or falling outside of a three SD threshold, constructed from
     # baseline EMG activity.
     response = rect[tms_sampleidx:]
+    if not np.any(response > threshold):
+        return 0, 0
     L = bw_boundaries(response > threshold)
     n = max(L)
     onset = None
@@ -93,22 +95,26 @@ def summers_onoff(
 
 
 def summers(trace: ndarray, tms_sampleidx: int, fs: float = 1000,) -> float:
-    """Estimate the amplitude of an iMEP based on Summers 2020
+    """Estimate the area of an iMEP based on Summers 2020
 
+    Normalizes the area by an area of identical duration during baseline, with onset and offset detected by passing a 3SD threshold compared to baseline.
 
     args
     ----
     trace:ndarray
         the EMG signal
+
     tms_sampleidx: int
         the sample at which the TMS pulse was applied
+
     fs:float
         the sampling rate of the signal
 
     returns
     -------
     amplitude:float
-        the iMEPArea based on the rectified EMG normalized by an Area of identical duration during baseline
+        the iMEPArea based on the rectified EMG normalized by an area of identical duration during baseline
+
 
     .. admonition:: Reference
     
@@ -122,7 +128,8 @@ def summers(trace: ndarray, tms_sampleidx: int, fs: float = 1000,) -> float:
     """
 
     onset, offset = summers_onoff(trace=trace, tms_sampleidx=tms_sampleidx, fs=fs,)
-
+    if onset == offset:
+        return 0.0
     response = np.abs(trace)
     iMEPArea = np.sum(response[onset:offset])
 
