@@ -4,7 +4,7 @@
 
 # Detection of Ipsilateral Motor Evoked Potentials
 
-**DiMEP** stands for **D**etection of **i**psilateral **M**otor **E**voked **P**otentials and was developed by [Robert Guggenberger](https://www.robert-guggenberger.de) at the [Institute of Neuromodulation and Neurotechnology of the University Hospital Tübingen](www.medizin.uni-tuebingen.de/go/neuromodulation).
+**DiMEP** stands for **D**etection of **i**psilateral **M**otor **E**voked **P**otentials and was developed by [Robert Guggenberger](https://www.robert-guggenberger.de) at the [Institute of Neuromodulation and Neurotechnology of the University Hospital Tübingen](https://www.medizin.uni-tuebingen.de/go/neuromodulation).
 
 
 Installation
