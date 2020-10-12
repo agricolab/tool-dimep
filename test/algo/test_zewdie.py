@@ -19,5 +19,5 @@ def test_zewdie(normtrace):
     assert zewdie(normtrace, 1000, 1000, discernible_only=True) == 0.0
     # does pass 100µV but not 3 * SD threshold
     # becuase the first peak deflects by 100
-    normtrace[970:1000] *= 100 / 2
+    normtrace[970:1000] *= 100
     assert zewdie(normtrace, 1000, 1000) == 0.0
