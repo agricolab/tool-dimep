@@ -1,0 +1,33 @@
+   digraph G{
+        
+    compound=true;
+    # rankdir = LR;
+
+
+    subgraph cluster0 {
+      label = "Density"
+      loyda
+      wassermann
+      }
+
+    subgraph cluster1{
+     label = "Area"
+     bradnam
+     chen
+     rotenberg
+     summers     
+    }
+    
+    subgraph cluster2{
+     label= "Amplitude"
+     bawa
+     lewis
+     odergren
+     zewdie
+    }
+    
+    subgraph cluster3{
+      label="Mixture"
+      ziemann
+    }
+   }

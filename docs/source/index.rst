@@ -43,7 +43,6 @@ and subsequently call them, e.g. with
    algorithms
 
 
-
 Indices and tables
 ==================
 

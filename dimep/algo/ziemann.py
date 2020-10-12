@@ -24,8 +24,6 @@ def ziemann(
 ) -> float:
     """Estimate the approximated area of of an iMEP based on Ziemann 1999
     
-    
-
     .. admonition:: Reference
 
         Ziemann, Ulf, Kenji Ishii, Alessandra Borgheresi, Zaneb Yaseen, Fortunato Battaglia, Mark Hallett, Massimo Cincotta, and Eric M. Wassermann. “Dissociation of the Pathways Mediating Ipsilateral and Contralateral Motor-Evoked Potentials in Human Hand and Arm Muscles.” The Journal of Physiology 518, no. 3 (August 1999): 895–906. https://doi.org/10.1111/j.1469-7793.1999.0895p.x.

@@ -1,3 +1,11 @@
+Organization
+------------
+
+.. graphviz:: classes.dot
+  :name: dependencies
+  :layout: dot
+
+
 Algorithms
 ----------
 

@@ -99,7 +99,7 @@ def chen_onoff(
 def chen(trace: ndarray, tms_sampleidx: int, fs: float = 1000) -> float:
     """Estimate the area of a an iMEP based on Chen 2003
 
-    The iMEP area is calculated from the rectified EMG, if at least 5ms are 1SD above the mean of the baseline. A fork is :func:`~.chen`.
+    The iMEP area is calculated from the rectified EMG, if at least 5ms are 1SD above the mean of the baseline.
 
 
     args
