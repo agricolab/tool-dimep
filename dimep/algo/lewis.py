@@ -21,7 +21,10 @@ import numpy as np
 
 
 def lewis(
-    trace: ndarray, tms_sampleidx: int, fs: float = 1000, discernible_only=False
+    trace: ndarray,
+    tms_sampleidx: int,
+    fs: float = 1000,
+    discernible_only: bool = False,
 ) -> float:
     """Estimate iMEP amplitude based on Lewis 2007
 

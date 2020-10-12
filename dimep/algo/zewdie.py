@@ -14,7 +14,10 @@ from math import ceil
 
 
 def zewdie(
-    trace: ndarray, tms_sampleidx: int, fs: float = 1000,
+    trace: ndarray,
+    tms_sampleidx: int,
+    fs: float = 1000,
+    discernible_only: bool = False,
 ):
     """Estimate the amplitude of an iMEP based on Zewdie 2017
 
@@ -29,6 +32,8 @@ def zewdie(
         the sample at which the TMS pulse was applied
     fs:float
         the sampling rate of the signal
+    discernible_only: bool
+        whether to report only discernible MEPS (i.e. amplitude >= 50 µV). defaults to False
 
     returns
     -------
@@ -42,7 +47,7 @@ def zewdie(
 
     .. seealso::
 
-        :func:`~.odergren` also uses a threshold with absolute units, but 100µV instead of 50µV. :func:`.lewis` is very similar, but uses a more narrow search window of 15-30ms and a higher threshold at 100µV.
+        :func:`~.odergren` also uses a threshold with absolute units, but 100µV instead of 50µV. :func:`.lewis` is very similar, but uses stricter criterio for discernibility.
 
     """
 
@@ -56,7 +61,7 @@ def zewdie(
     # standard deviations from mean background EMG
     # The paper does not clarify whether this was an additional threshold
     # besides the 50µV, but it seems reasonable
-    threshold = np.max((bl_m + 3 * bl_s, 100))
+    threshold = bl_m + 3 * bl_s
 
     mep_window_in_ms: Tuple[float, float] = (15, 80)
     minlatency = ceil(mep_window_in_ms[0] * fs / 1000)
@@ -65,9 +70,14 @@ def zewdie(
     response = trace[tms_sampleidx + minlatency : tms_sampleidx + maxlatency]
     # exceed 3 standard deviations (SD) of background EMG.
     # ipsilateral MEP >50 μV in amplitude
-    if np.max(response) > threshold:
+    # NOTE: we take the abs because otherwise, orientiation of the bipolar
+    # recording can mess things up
+    if np.max(np.abs(response)) > threshold:
         amp = np.ptp(response)
     else:
         amp = 0.0
-    return amp if amp > 50.0 else 0.0
 
+    if discernible_only:
+        return amp if amp >= 50.0 else 0.0
+    else:
+        return amp
