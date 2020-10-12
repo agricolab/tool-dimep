@@ -17,18 +17,21 @@ def rotenberg(
 
     Returns the iMEP Area of the rectified EMG integrated for the search window
 
-    .. warning
+    .. warning::
 
-        This study was conducted on rats, and therefore the default search window from 5 to 30ms is probably too fast. Consider adapting it when conducting studies with humans, e.g. to 15 to 50ms.
+        This study was conducted on rats, and therefore the default search window from 5 to 30ms is probably too fast in humans. We therefore implemented the mep_window_in_ms as an argument. Consider adapting it when conducting studies with humans, e.g. to 15 to 50ms.
     
     args
     ----
     trace:ndarray
         the onedimensional EMG signal in units of µV
+
     tms_sampleidx: int
         the sample at which the TMS pulse was applied
+
     fs:float
         the sampling rate of the signal
+
     mep_window_in_ms: Tuple[float, float]
         the search window after TMS to look for an iMEP.
 
@@ -46,5 +49,5 @@ def rotenberg(
     a = tms_sampleidx + ceil(mep_window_in_ms[0] * fs / 1000)
     # b should not be higher then the len of the trace
     b = ceil(min((tms_sampleidx + (mep_window_in_ms[1] * fs / 1000)), len(trace)))
-    amp = np.sum(trace[a:b])
+    amp = np.sum(np.abs(trace[a:b]))
     return amp
