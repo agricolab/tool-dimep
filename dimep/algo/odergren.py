@@ -9,14 +9,13 @@ from math import ceil
 
 
 def odergren(
-    trace: ndarray,
-    tms_sampleidx: int,
-    fs: float = 1000,
-    mep_window_in_ms: Tuple[float, float] = (0, inf),
+    trace: ndarray, tms_sampleidx: int, fs: float = 1000,
 ):
     """Estimate the amplitude of an iMEP based on Odergren 1996
 
     Returns the PtP-Amplitude of the unrectified EMG if above 0.1mV (100µV) 
+
+    The manuscript did not specify a restricted search window, and by default we search the whole trace, starting from the TMS to the end of the supplied samples.
 
     .. warning:
 
@@ -30,8 +29,6 @@ def odergren(
         the sample at which the TMS pulse was applied
     fs:float
         the sampling rate of the signal
-    mep_window_in_ms: Tuple[float, float]
-        the search window after TMS to look for an iMEP. The manuscript did not specify a restricted search window, and by default we search the whole trace, starting from the TMS to the end of the supplied samples.
 
     returns
     -------
@@ -48,10 +45,5 @@ def odergren(
         :func:`~.bawa` also takes the PtP amplitude, but does not threshold it
 
     """
-    a = tms_sampleidx + ceil(mep_window_in_ms[0] * fs / 1000)
-    # b should not be higher then the len of the trace
-    b = ceil(
-        min((tms_sampleidx + (mep_window_in_ms[1] * fs / 1000)), len(trace))
-    )
-    amp = np.ptp(trace[a:b])
-    return amp if amp > 100 else 0.0
+    amp = np.ptp(trace[tms_sampleidx:])
+    return amp if amp >= 100 else 0.0

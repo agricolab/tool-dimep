@@ -3,7 +3,7 @@ import numpy as np
 import pytest
 
 
-def test_loyda(normtrace):
+def test_loyda():
     trace = np.zeros(2000)
     assert loyda(trace, tms_sampleidx=1000, fs=1000) == 0
     trace[1010:1020] = 1
