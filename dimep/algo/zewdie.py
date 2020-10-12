@@ -19,7 +19,7 @@ def zewdie(
     fs: float = 1000,
     discernible_only: bool = False,
 ) -> float:
-    """Estimate the amplitude of an iMEP based on Zewdie 2017
+    """Estimate the peak-to-peak amplitude of an iMEP based on Zewdie 2017
 
 
     Returns the Peak-to-Peak amplitude of the iMEP within 15 to 80ms after stimulus, if it is 'discernable' i.e. at least 50µV in amplitude and exceeds 3 SD of the background EMG.

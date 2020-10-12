@@ -96,7 +96,7 @@ def loyda(
     fs: float = 1000,
     sham_trace: Union[ndarray, None] = None,
 ) -> float:
-    """Estimate the amplitude of an iMEP based on Loyda 2017
+    """Estimate the normalized density of an iMEP based on Loyda 2017
 
     The iMEP area is calculated from the rectified EMG, if at least 10ms are 1SD above the mean of the baseline of the 200ms before TMS, and additionally normalized by the area of an identical period from a nonstimulation trial. 
 

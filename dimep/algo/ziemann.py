@@ -22,7 +22,7 @@ def ziemann(
     fs: float = 1000,
     minimum_duration_in_ms: float = 5,
 ) -> float:
-    """Estimate the amplitude of an iMEP 
+    """Estimate the approximated area of of an iMEP based on Ziemann 1999
     
     
 

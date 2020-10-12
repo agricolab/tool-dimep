@@ -16,7 +16,7 @@ def bawa(
     fs: float = 1000,
     mep_window_in_ms: Tuple[float, float] = (0, inf),
 ) -> float:
-    """Estimate the amplitude of an iMEP based on Bawa 2004
+    """Estimate the peak-to-peak amplitude of an iMEP based on Bawa 2004
 
     Calculates the PtP-Amplitude of the unrectified EMG from 
 

@@ -26,7 +26,7 @@ def lewis(
     fs: float = 1000,
     discernible_only: bool = False,
 ) -> float:
-    """Estimate iMEP amplitude based on Lewis 2007
+    """Estimate peak-to-peak amplitude of an iMEP based on Lewis 2007
 
     Returns the Peak-to-Peak amplitude of the iMEP within 10 to 30ms after stimulus, if it is 'discernable' i.e. at least 100µV in amplitude and exceeds 3 SD of the background EMG (the 30 ms prior to stimulus).
 

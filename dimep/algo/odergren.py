@@ -9,7 +9,7 @@ from math import ceil
 
 
 def odergren(trace: ndarray, tms_sampleidx: int, fs: float = 1000,) -> float:
-    """Estimate the amplitude of an iMEP based on Odergren 1996
+    """Estimate the peak-to-peak amplitude of an iMEP based on Odergren 1996
 
     Returns the PtP-Amplitude of the unrectified EMG if above 0.1mV (100µV) 
 

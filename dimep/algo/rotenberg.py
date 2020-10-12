@@ -13,7 +13,7 @@ def rotenberg(
     mep_window_in_ms: Tuple[float, float] = (5, 30),
     fs: float = 1000,
 ) -> float:
-    """Estimate the amplitude of an iMEP based on Rotenberg 2010
+    """Estimate the area of an iMEP based on Rotenberg 2010
 
     Returns the iMEP Area of the rectified EMG integrated for the search window
 
