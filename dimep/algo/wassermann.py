@@ -20,18 +20,51 @@ def wassermann(
     minimum_duration_in_ms: float = 2,
     threshold: float = 0.01,
 ) -> float:
-    """Estimate the amplitude of an iMEP
+    """Estimate the normalized density of an iMEP based on Wassermann 1994
 
-    based  on 
+    Uses a statistical test to compare the iMEP versus baseline activity. Only if a block of at least 2ms is significant in a one-sided t-test with p<0.01, the iMEP area average is calculated and normalized to an area of identical duration from the baseline.
 
-    Wassermann, Eric M., Alvaro Pascual-Leone, and Mark Hallett. “Cortical Motor Representation of the Ipsilateral Hand and Arm.” Experimental Brain Research 100, no. 1 (July 1994). https://doi.org/10.1007/BF00227284.
+    args
+    ----
+    trace:ndarray
+        the EMG signal
+
+    tms_sampleidx: int
+        the sample at which the TMS pulse was applied
+
+    mep_window_in_ms: Tuple[float, float] = (15, 75),
+        the paper describes to have used 'the 20 ms following the onset of the contralateral MEP evoked at the optimal cMEP position'. The latency should therefore be set to your empirical results, e.g. if the latency of the cMEP was 19, set mep_window_in_ms to (19, 39). As the range of latencies in healthy and stroke can vary a lot, we used a very large default range.
+
+    fs:float
+        the sampling rate of the signal
+
+    minimum_duration_in_ms: float = 2,
+        the papers requires the iMEP to be above threshold for at least 2ms.
+
+    threshold: float = 0.01
+        the paper describes to have thresholded for `values above baseline (P < 0.01, 1-tailed t-test)`. The one-tailed test is hardcoded, but you can be flexible with your p-value threshold.
+
+
+    returns
+    -------
+    amplitude:float
+        the iMEPArea based on the rectified EMG normalized by an area of identical duration during baseline
+
+
+
+    .. admonition:: Reference
+
+        Wassermann, Eric M., Alvaro Pascual-Leone, and Mark Hallett. “Cortical Motor Representation of the Ipsilateral Hand and Arm.” Experimental Brain Research 100, no. 1 (July 1994). https://doi.org/10.1007/BF00227284.
 
     """
-    # as the latency of the contralateral MEP might sometimes not be known in
-    # general (e.g. after stroke), we let it set as argument and default
+    # the original implementation uses 'the 20 ms following the onset of the contralateral MEP evoked at the optimal cMEP position'.
+    # the latency of the contralateral MEP is usually around 15-50 ms in
+    # but might sometimes not be known in  general (e.g. after stroke), we let it set as argument and sh default
     # to expected values from healthy populations
     minlatency = ceil(mep_window_in_ms[0] * fs / 1000)
+    maxhardcodedlatency = ceil(150 * fs / 1000)
     maxlatency = ceil(mep_window_in_ms[1] * fs / 1000)
+    maxlatency = min((maxlatency, maxhardcodedlatency, len(trace) - tms_sampleidx))
     # there was no information about the baseline period
     #  duration, therefore we
     # used the same period as mentioned in wassermann_sd
