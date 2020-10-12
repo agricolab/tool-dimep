@@ -12,7 +12,7 @@ def rotenberg(
     tms_sampleidx: int,
     mep_window_in_ms: Tuple[float, float] = (5, 30),
     fs: float = 1000,
-):
+) -> float:
     """Estimate the amplitude of an iMEP based on Rotenberg 2010
 
     Returns the iMEP Area of the rectified EMG integrated for the search window
@@ -45,8 +45,6 @@ def rotenberg(
     """
     a = tms_sampleidx + ceil(mep_window_in_ms[0] * fs / 1000)
     # b should not be higher then the len of the trace
-    b = ceil(
-        min((tms_sampleidx + (mep_window_in_ms[1] * fs / 1000)), len(trace))
-    )
+    b = ceil(min((tms_sampleidx + (mep_window_in_ms[1] * fs / 1000)), len(trace)))
     amp = np.sum(trace[a:b])
     return amp

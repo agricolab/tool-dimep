@@ -21,7 +21,7 @@ def ziemann(
     mep_window_in_ms: Tuple[float, float] = (15, 50),
     fs: float = 1000,
     minimum_duration_in_ms: float = 5,
-):
+) -> float:
     """Estimate the amplitude of an iMEP 
     
     
@@ -37,9 +37,7 @@ def ziemann(
     baseline_start = tms_sampleidx - ceil(50 * fs / 1000)
     # select baseline and response
     baseline = np.abs(trace)[baseline_start:tms_sampleidx]
-    response = np.abs(trace)[
-        tms_sampleidx + minlatency : tms_sampleidx + maxlatency
-    ]
+    response = np.abs(trace)[tms_sampleidx + minlatency : tms_sampleidx + maxlatency]
     # calculate threshold
     bl_m = baseline.mean()
     bl_s = baseline.std(ddof=1)  # to be consistent with Matlab defaults

@@ -18,7 +18,7 @@ def zewdie(
     tms_sampleidx: int,
     fs: float = 1000,
     discernible_only: bool = False,
-):
+) -> float:
     """Estimate the amplitude of an iMEP based on Zewdie 2017
 
 

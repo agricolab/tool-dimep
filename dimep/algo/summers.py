@@ -92,9 +92,7 @@ def summers_onoff(
         return 0, 0
 
 
-def summers(
-    trace: ndarray, tms_sampleidx: int, fs: float = 1000,
-):
+def summers(trace: ndarray, tms_sampleidx: int, fs: float = 1000,) -> float:
     """Estimate the amplitude of an iMEP based on Summers 2020
 
 
@@ -123,9 +121,7 @@ def summers(
 
     """
 
-    onset, offset = summers_onoff(
-        trace=trace, tms_sampleidx=tms_sampleidx, fs=fs,
-    )
+    onset, offset = summers_onoff(trace=trace, tms_sampleidx=tms_sampleidx, fs=fs,)
 
     response = np.abs(trace)
     iMEPArea = np.sum(response[onset:offset])

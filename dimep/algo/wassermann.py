@@ -19,7 +19,7 @@ def wassermann(
     fs: float = 1000,
     minimum_duration_in_ms: float = 2,
     threshold: float = 0.01,
-):
+) -> float:
     """Estimate the amplitude of an iMEP
 
     based  on 
@@ -38,9 +38,7 @@ def wassermann(
     baseline_start = tms_sampleidx - ceil(150 * fs / 1000)
     # select baseline and response
     baseline = np.abs(trace)[baseline_start:tms_sampleidx]
-    response = np.abs(trace)[
-        tms_sampleidx + minlatency : tms_sampleidx + maxlatency
-    ]
+    response = np.abs(trace)[tms_sampleidx + minlatency : tms_sampleidx + maxlatency]
     bl_bins = down_bin(baseline, int(fs / 1000))
     response_bins = down_bin(response, int(fs / 1000))
     out = ttest_1samp(bl_bins, response_bins)
