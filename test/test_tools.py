@@ -13,3 +13,11 @@ def test_downbin(binsize):
 
     assert np.allclose(down_bin(x, int(binsize)), xhat)
 
+
+def test_bwboundaries():
+    assert np.allclose(bw_boundaries([0, 1, 1, 0]), [0, 1, 1, 0])
+    assert np.allclose(bw_boundaries([0, 1, 1, 0, 1]), [0, 1, 1, 0, 2])
+    assert np.allclose(bw_boundaries([1, 1, 1, 0, 1]), [1, 1, 1, 0, 2])
+    assert np.allclose(bw_boundaries([1, 1, 1, 1, 1]), [1, 1, 1, 1, 1])
+    assert np.allclose(bw_boundaries([1, 1, 0, 0, 1]), [1, 1, 0, 0, 2])
+    assert np.allclose(bw_boundaries([1, 1, 0, 1, 0, 1]), [1, 1, 0, 2, 0, 3])

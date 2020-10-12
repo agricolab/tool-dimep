@@ -44,6 +44,7 @@ def bw_boundaries(bools: ndarray) -> ndarray:
         an array of cluster membership values
 
     """
+    bools = np.asarray_chkfinite(bools)
     L: ndarray = np.zeros(bools.shape[0], dtype=np.int)
     i: int = 0
     counter: int = 0
