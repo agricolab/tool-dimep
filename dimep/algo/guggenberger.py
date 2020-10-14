@@ -138,6 +138,10 @@ def guggenberger(
     ----
     trace:ndarray
         the onedimensional EMG signal with units in µV    
+        
+    tms_sampleidx: int
+        the sample at which the TMS pulse was applied
+
     fs:float
         the sampling rate of the signal
     
@@ -153,5 +157,7 @@ def guggenberger(
     
 
     """
-    xcorr = np.correlate(trace[tms_sampleidx:], get_template(fs))
+    sig = trace[tms_sampleidx:]
+    sig = sig / norm(sig)
+    xcorr = np.correlate(sig, get_template(fs))
     return np.max(np.abs(xcorr))

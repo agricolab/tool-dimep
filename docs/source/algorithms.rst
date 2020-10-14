@@ -35,6 +35,12 @@ Bradnam 2010
 
 .. autofunction:: bradnam
    
+   
+Guggenberger
+++++++++++++
+
+.. autofunction:: guggenberger
+   
 Lewis 2007
 ++++++++++
 
@@ -67,7 +73,7 @@ Wassermann 1994
 
 .. autofunction:: wassermann
 
-Zedie 2017
+Zewdie 2017
 +++++++++++
 
 .. autofunction:: zewdie
