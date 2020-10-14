@@ -122,7 +122,7 @@ def loyda(
 
     .. admonition:: Reference  
     
-    Loyda, J.-C.; Nepveu, J.-F.; Deffeyes, J. E.; Elgbeili, G.; Dancause, N. & Barthélemy, D. Interhemispheric interactions between trunk muscle representations of the primary motor cortex. Journal of neurophysiology, 2017, 118, 1488-1500 
+        Loyda, J.-C.; Nepveu, J.-F.; Deffeyes, J. E.; Elgbeili, G.; Dancause, N. & Barthélemy, D. Interhemispheric interactions between trunk muscle representations of the primary motor cortex. Journal of neurophysiology, 2017, 118, 1488-1500 
 
     """
     onset, offset = loyda_onoff(trace, tms_sampleidx=tms_sampleidx, fs=fs)
@@ -137,7 +137,12 @@ def loyda(
     # mimic this
     if sham_trace is None:
         try:
-            # we go backwards from the tms. Because onset and offset are sampleindices, we flip the along the tms_sampleidx
+            # we go backwards from the timepoint when tms occurs. Because
+            # onset and offset are sampleindices relative to tms_sampleidx
+            # we subtract from twice tms_sampleidx (ie.
+            # tms_sampleidx - (offset - tms_sampleidx) =>
+            # tms_sampleidx - offset + tms_sampleidx  =>
+            # 2 * tms_sampleidx - offset
             shamArea = np.mean(
                 np.abs(
                     trace[
