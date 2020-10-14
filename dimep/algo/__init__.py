@@ -1,6 +1,7 @@
 from .bawa import bawa
 from .bradnam import bradnam
 from .chen import chen
+from .guggenberger import guggenberger
 from .lewis import lewis
 from .loyda import loyda
 from .odergren import odergren
@@ -15,6 +16,7 @@ __all__ = [
     "chen",
     "bawa",
     "bradnam",
+    "guggenberger",
     "lewis",
     "loyda",
     "odergren",
