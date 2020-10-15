@@ -1,6 +1,5 @@
 import numpy as np
 from numpy import ndarray
-from numpy.lib.function_base import interp
 from scipy.interpolate import interp1d
 from scipy.linalg import norm
 
