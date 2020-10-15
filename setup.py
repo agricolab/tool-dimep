@@ -25,7 +25,7 @@ setup(
     author="Robert Guggenberger",
     author_email="robert.guggenberger@uni-tuebingen.de",
     url="https://github.com/translationalneurosurgery/tool-dimep",
-    download_url="git@github.com:translationalneurosurgery/tool-dimep.git",
+    download_url="https://github.com/translationalneurosurgery/tool-dimep",
     license="MIT",
     packages=setuptools.find_packages(exclude=["test", "docs"]),
     classifiers=[
