@@ -1,15 +1,15 @@
 import setuptools
 from distutils.core import setup
+from pathlib import Path
 
 # read the contents of README.md
-from pathlib import Path
 
 this_directory = Path(__file__).parent
 with (this_directory / "readme.md").open(encoding="utf-8") as f:
     long_description = f.read()
 
-with (this_directory / "dimep" / "version.py").open(encoding="utf-8") as f:
-    version = f.readline().split("=")[1].strip()
+version = "0.3.0"
+
 
 print(version)
 setup(
