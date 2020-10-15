@@ -10,11 +10,7 @@
 Installation
 ------------
 
-``` bash
-
-   pip install git+https://github.com/translationalneurosurgery/tool-dimep.git
-
-```
+Install the stabel release from PyPI with `pip install dimep` and the most recent development  tip with `pip install git+https://github.com/translationalneurosurgery/tool-dimep.git`.
 
 Usage
 -----
