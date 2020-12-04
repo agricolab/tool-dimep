@@ -43,6 +43,13 @@ and subsequently call them, e.g. with
    algorithms
 
 
+
+In the description of some algorithms, minor details were missing, e.g., the
+duration of the post TMS search window. In these cases, sensible defaults were
+used, and documented to inform the user. The source code is annotated with
+quotes from the respective papers for reference. 
+
+
 Indices and tables
 ==================
 
