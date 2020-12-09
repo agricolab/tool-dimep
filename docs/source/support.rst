@@ -6,7 +6,7 @@ We assessed these algorithms on a dataset of 2546 trials from 54 subjects aggreg
 Strictness
 ----------
 
-One of the findings was that very strict threshold-based approaches like Bradnam or Loyda are better able to recover the latent waveform, but at the cost of a low reliability, as many trials can not be measured and are assigned as zero. This asssignment of zeros can be interpreted as strictness, and can be estimated by plotting the empirical CDF
+One of the findings was that very strict threshold-based approaches like Bradnam or Loyda are better able to recover the latent waveform, but at the cost of a low reliability, as many trials can not be measured and are assigned as zero. This asssignment of zeros can be interpreted as strictness, and can be estimated by plotting the empirical CDF. The farther to the right an algorithm starts to assign values, the stricter it is. Strictness can be good or bad, depending on whether you are ok with having to discard a lot of trials.
 
 .. image:: _static/ecdf_algorithms.png
 
