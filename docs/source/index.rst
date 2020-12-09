@@ -50,6 +50,13 @@ used, and documented to inform the user. The source code is annotated with
 quotes from the respective papers for reference. 
 
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Supporting Information:
+
+   support
+
+
 Indices and tables
 ==================
 
