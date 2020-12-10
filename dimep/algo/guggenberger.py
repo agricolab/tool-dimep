@@ -3,7 +3,7 @@ from numpy import ndarray
 from scipy.interpolate import interp1d
 from scipy.linalg import norm
 
-template = np.atleast_1d(
+template: ndarray = np.array(
     [
         0.0025827016085613755,
         -0.008759908769747474,
@@ -115,13 +115,13 @@ template = np.atleast_1d(
 def get_template(fs: float) -> ndarray:
     "return the template at the requested sampling rate"
     if fs == 1000.0:
-        return template / norm(template)
+        return template / norm(template)  # type: ignore
 
     x = np.linspace(0, len(template) / 1000, len(template))
     xhat = np.linspace(0, len(template) / 1000, int(len(template) * fs / 1000))
     model = interp1d(x, template)
     itemplate = model(xhat)
-    return itemplate / norm(itemplate)
+    return itemplate / norm(itemplate)  # type: ignore
 
 
 def guggenberger(
@@ -156,10 +156,7 @@ def guggenberger(
     
 
     """
-    sig = trace[tms_sampleidx:]
-    sig = sig / norm(sig)
-    xcorr = np.correlate(sig, get_template(fs))
-    return np.max(np.abs(xcorr))
+    return match_template(get_template(fs), trace, tms_sampleidx, fs)
 
 
 def match_template(

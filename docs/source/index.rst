@@ -6,7 +6,7 @@
 Welcome to DiMEP's documentation!
 =================================
 
-**DiMEP** stands for **D**\etection of **i**\psilateral **M**\otor **E**\voked **P**\otentials and was developed by `Robert Guggenberger <https://www.robert-guggenberger.de>`_ at the Institute of Neuromodulation and Neurotechnology of the `University Hospital Tübingen <https://www.medizin.uni-tuebingen.de/de/das-klinikum/einrichtungen/kliniken/neurochirurgie-und-neurotechnologie/neuromodulation-und-neurotechnologie>`_.
+**DiMEP** stands for **D**\etection of **i**\psilateral **M**\otor **E**\voked **P**\otentials and was developed by `Robert Guggenberger <https://www.agricolab.de>`_ at the Institute of Neuromodulation and Neurotechnology of the `University Hospital Tübingen <https://www.medizin.uni-tuebingen.de/de/das-klinikum/einrichtungen/kliniken/neurochirurgie-und-neurotechnologie/neuromodulation-und-neurotechnologie>`_.
 
 
 Installation
