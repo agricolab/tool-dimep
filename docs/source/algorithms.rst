@@ -16,7 +16,14 @@ Algorithms
 
 Sorted in alphabetical order according to last name of first author.
 
-Suitable algorithms were deteced based on a literature research on pubmed using *ipsilateral motor evoked potentials* as keyword. This search was performed on 5th Octobre 2020. Articles were selected based on title and abstract, and the subselected manuscripts were read for sufficient description of an automated algorithms for estimation of iMEP amplitude (or area, or similar). All algorithms have been implemented to the best of our understanding, based on the description of methods in the respective paper. The quotes on which algorithmic decisions were based can be found in the source code of the respective functions.
+Suitable algorithms were deteced based on a literature research on pubmed using *ipsilateral motor evoked potentials* as keyword. This search was performed on 5th October 2020. Articles were selected based on title and abstract, and the subselected manuscripts were read for sufficient description of an automated algorithms for estimation of iMEP amplitude (or area, or similar). All algorithms have been implemented to the best of our understanding, based on the description of methods in the respective paper. 
+
+
+In the description of some algorithms, minor details were missing, e.g., the
+duration of the post TMS search window. In these cases, sensible defaults were
+used, and documented to inform the user. Decisions and quotes from the 
+respective papers can be found in the source code of the respective functions 
+for reference
 
 .. currentmodule:: dimep.algo
 

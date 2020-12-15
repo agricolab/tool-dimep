@@ -12,6 +12,17 @@ Welcome to DiMEP's documentation!
 Installation
 ------------
 
+Stable 
+++++++
+
+.. code-block::
+
+   pip install dimep
+
+
+Development
++++++++++++
+
 .. code-block::
 
    pip install git+https://github.com/translationalneurosurgery/tool-dimep.git
@@ -19,13 +30,21 @@ Installation
 Usage
 -----
 
-Access the algorithms with
+List all available algorithms with
+
+.. code-block::
+
+   from dimep.api import available
+   available()
+
+
+Access a specific algorithms with
 
 .. code-block::
 
    from dimep.api import <algorithm>
 
-and subsequently call them, e.g. with
+and subsequently call them, e.g. use the threshold based approach by Lewis (2007)
 
 .. code-block::
 
@@ -36,19 +55,22 @@ and subsequently call them, e.g. with
    # and fs is the sampling rate.
 
 
+or to use the template based approach by Guggenberger:
+
+.. code-block::
+
+   from dimep.api import guggenberger
+   guggenberger(trace=trace, tms_sampleidx= 500, fs = 1000)
+   # where the trace is the single-channel EMG recording
+   # tms_sampleidx marks the onset of the TMS pulse
+   # and fs is the sampling rate.
+
+
 .. toctree::
    :maxdepth: 2
    :caption: Implemented algorithms:
 
    algorithms
-
-
-
-In the description of some algorithms, minor details were missing, e.g., the
-duration of the post TMS search window. In these cases, sensible defaults were
-used, and documented to inform the user. The source code is annotated with
-quotes from the respective papers for reference. 
-
 
 .. toctree::
    :maxdepth: 2
