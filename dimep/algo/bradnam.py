@@ -23,7 +23,7 @@ def bradnam(
     args
     ----
     trace:ndarray
-        the EMG signal
+        the one-dimensional (samples,) EMG signal
     tms_sampleidx: int
         the sample at which the TMS pulse was applied
     fs:float

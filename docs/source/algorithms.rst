@@ -1,5 +1,5 @@
-Organization
-------------
+Algorithms
+----------
 .. 
   .. graphviz:: classes.dot
     :name: dependencies
@@ -8,11 +8,6 @@ Organization
 .. image:: _static/organisation.png
    :alt: Organisation of iMEP Algorithms   
    :class: with-shadow
-
-
-
-Algorithms
-----------
 
 Sorted in alphabetical order according to last name of first author.
 

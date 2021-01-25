@@ -33,7 +33,7 @@ def lewis(
     args
     ----
     trace:ndarray
-        the onedimensional EMG signal with units in µV
+        the one-dimensional (samples,) EMG signal with units in µV
     tms_sampleidx: int
         the sample at which the TMS pulse was applied
     fs:float
@@ -78,7 +78,9 @@ def lewis(
     #  latency was defined as the first point following the stimulus
     # artifact to exceed 3 standard deviations (SD) of background EMG
     # a discernable ipsilateral MEP (iMEP; 10–30 ms onset, >100µV)
-    onset = np.where(np.abs(response[minlatency:maxlatency]) >= sd_threshold)[0]
+    onset = np.where(np.abs(response[minlatency:maxlatency]) >= sd_threshold)[
+        0
+    ]
     if len(onset) > 0:
         onset = onset[0]
         # MEP amplitude was determined as the maximum peak-to-peak difference

@@ -23,7 +23,7 @@ def bawa(
     args
     ----
     trace:ndarray
-        the onedimensional EMG signal
+        the one-dimensional (samples,) EMG signal
     tms_sampleidx: int
         the sample at which the TMS pulse was applied
     fs:float
@@ -49,6 +49,8 @@ def bawa(
     """
     a = tms_sampleidx + ceil(mep_window_in_ms[0] * fs / 1000)
     # b should not be higher then the len of the trace
-    b = ceil(min((tms_sampleidx + (mep_window_in_ms[1] * fs / 1000)), len(trace)))
+    b = ceil(
+        min((tms_sampleidx + (mep_window_in_ms[1] * fs / 1000)), len(trace))
+    )
     return np.ptp(trace[a:b])
 

@@ -136,11 +136,9 @@ def guggenberger(
     args
     ----
     trace:ndarray
-        the onedimensional EMG signal with units in µV    
-        
+        the one-dimensional (samples,) EMG signal with units in µV     
     tms_sampleidx: int
         the sample at which the TMS pulse was applied
-
     fs:float
         the sampling rate of the signal
     

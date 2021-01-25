@@ -27,11 +27,9 @@ def wassermann(
     args
     ----
     trace:ndarray
-        the EMG signal
-
+        the one-dimensional (samples,) EMG signal
     tms_sampleidx: int
         the sample at which the TMS pulse was applied
-
     mep_window_in_ms: Tuple[float, float] = (15, 75),
         the paper describes to have used 'the 20 ms following the onset of the contralateral MEP evoked at the optimal cMEP position'. The latency should therefore be set to your empirical results, e.g. if the latency of the cMEP was 19, set mep_window_in_ms to (19, 39). As the range of latencies in healthy and stroke can vary a lot, we used a very large default range.
 
@@ -64,14 +62,18 @@ def wassermann(
     minlatency = ceil(mep_window_in_ms[0] * fs / 1000)
     maxhardcodedlatency = ceil(150 * fs / 1000)
     maxlatency = ceil(mep_window_in_ms[1] * fs / 1000)
-    maxlatency = min((maxlatency, maxhardcodedlatency, len(trace) - tms_sampleidx))
+    maxlatency = min(
+        (maxlatency, maxhardcodedlatency, len(trace) - tms_sampleidx)
+    )
     # there was no information about the baseline period
     #  duration, therefore we
     # used the same period as mentioned in wassermann_sd
     baseline_start = tms_sampleidx - ceil(150 * fs / 1000)
     # select baseline and response
     baseline = np.abs(trace)[baseline_start:tms_sampleidx]
-    response = np.abs(trace)[tms_sampleidx + minlatency : tms_sampleidx + maxlatency]
+    response = np.abs(trace)[
+        tms_sampleidx + minlatency : tms_sampleidx + maxlatency
+    ]
     bl_bins = down_bin(baseline, int(fs / 1000))
     response_bins = down_bin(response, int(fs / 1000))
     out = ttest_1samp(bl_bins, response_bins)
