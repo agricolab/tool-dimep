@@ -161,5 +161,6 @@ def match_template(
     template: ndarray, trace: ndarray, tms_sampleidx: int, fs: float = 1000,
 ) -> float:
     sig = trace[tms_sampleidx:]
+    sig = sig / norm(sig)
     xcorr = np.correlate(sig, template)
     return np.max(np.abs(xcorr))
