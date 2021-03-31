@@ -161,4 +161,4 @@ def loyda(
         raise ValueError(
             "Sham Area is too close to zero for numerical stability"
         )
-    return (iMEPArea / shamArea) * 100
+    return float((iMEPArea / shamArea) * 100)

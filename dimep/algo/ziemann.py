@@ -69,7 +69,7 @@ def ziemann(
     L = bw_boundaries(response > threshold)
     n = max(L)
     active_idx = None
-    duration_in_ms = 0.0
+    duration_in_ms: float = 0.0
     nix = 1
     while nix <= n:
         # translate number of samples into duration in ms
@@ -84,9 +84,9 @@ def ziemann(
         return 0.0
     else:
         # initialise dEMG
-        delta = np.mean(response[active_idx]) - np.mean(baseline)
+        delta: float = float(np.mean(response[active_idx]) - np.mean(baseline))
         # can be negative, therefore we set a boundary at zero (instead
         # of using an if-clause to return 0.0
-        delta = max([delta, 0])
-        dEMG = delta * duration_in_ms
+        delta = max([delta, 0.0])
+        dEMG: float = delta * duration_in_ms
         return dEMG
