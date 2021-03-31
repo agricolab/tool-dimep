@@ -154,13 +154,20 @@ def guggenberger(
     
 
     """
-    return match_template(get_template(fs), trace, tms_sampleidx, fs)
+    template = get_template(fs)
+    return match_template(template, trace, tms_sampleidx, fs)
 
 
 def match_template(
     template: ndarray, trace: ndarray, tms_sampleidx: int, fs: float = 1000,
 ) -> float:
     sig = trace[tms_sampleidx:]
+    if sig.shape[0] < template.shape[0]:
+        from warnings import warn
+
+        warn(
+            "We recommend that the duration of the trace post TMS should to be at least as long as the template, i.e. 103ms"
+        )
     sig = sig / norm(sig)
-    xcorr = np.correlate(sig, template)
+    xcorr = np.correlate(sig, template, mode="full")
     return np.max(np.abs(xcorr))
