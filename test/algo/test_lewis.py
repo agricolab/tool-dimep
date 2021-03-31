@@ -21,3 +21,14 @@ def test_lewis(normtrace):
     # becuase the first peak deflects by 100
     normtrace[970:1000] *= 100 / 2
     assert lewis(normtrace, 1000, 1000) == 0.0
+
+
+def test_lewis_minlatency(normtrace):
+    normtrace[1000:1100] = 0.0
+    normtrace[1010] = 501
+    normtrace[1005] = 600
+    # here we expect that the peak before ms10 is ignored
+    assert lewis(normtrace, 1000, 1000, discernible_only=True) == 501.0
+    normtrace[1030] = 502
+    # here we expect that the peak after ms10 is used
+    assert lewis(normtrace, 1000, 1000, discernible_only=True) == 502.0
