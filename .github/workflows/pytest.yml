@@ -20,6 +20,7 @@ jobs:
       - name: Test with mypy
         run: |
           pip install mypy
+          pip install types-setuptools
           mypy
       - name: Test with pytest
         run: |
