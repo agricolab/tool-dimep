@@ -1,11 +1,12 @@
 Cite As
 -------
 
-We assessed these algorithms by investigating a dataset of 2546 trials from 54 subjects. The detailed results of this evaluation can be found in the accompanying manuscript 
+We assessed these algorithms by investigating a dataset of 2546 trials from 54 subjects. The dataset can be retrieved from https://doi.org/10.5281/zenodo.5266492. Detailed results of this evaluation can be found in the manuscript 
 
 .. admonition:: cite
 
    Guggenberger et al. Evaluation of signal analysis algorithms for ipsilateral motor evoked potentials induced by transcranial magnetic stimulation (under review)
+
 
 
 Strictness of algorithms
