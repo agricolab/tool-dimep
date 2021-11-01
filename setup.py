@@ -11,7 +11,7 @@ with (this_directory / "readme.md").open(encoding="utf-8") as f:
 with (this_directory / "requirements.txt").open() as f:
     install_requires = f.readlines()
 
-version = "0.2"
+version = "12.1"
 
 
 print(version)
